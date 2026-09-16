@@ -1,6 +1,6 @@
 """
 Array271 -- a fixed-capacity string array, built on top of a Python list.
-
+LONDON'S VERSION
 This is the Week 2 `Array271` (see `week02/array_271.py`) carried forward
 and extended with what we covered in class this week: private attributes
 with accessor ("getter") methods instead of reaching into the object
