@@ -2,11 +2,12 @@
 
 ## The task
 
-This week's class covered four sorting algorithms and how to reason
-about their cost. This assignment gives you three "mystery" sorting
-functions — `gandalf`, `saruman`, and `sauron` — and asks you to figure
-out, purely from *timing* them, what each one is actually doing
-underneath.
+This week we talked about why sorting matters — a sorted collection
+lets you search it dramatically faster — and looked at how sorting
+costs grow: linear, $n \log n$, quadratic, and worse than any of those.
+This assignment gives you three "mystery" sorting functions —
+`gandalf`, `saruman`, and `sauron` — and asks you to figure out, purely
+from *timing* them, what each one is actually doing underneath.
 
 All three share one contract:
 
@@ -49,32 +50,69 @@ A short write-up (code + text, however you want to present it) covering:
 
    - Start at $n = 16$.
    - Time it (averaged as above).
-   - Double $n$ and time it again.
-   - Keep doubling until either you have enough doublings (4–5) to see
-     a clear pattern, **or** a single run starts taking uncomfortably
-     long. Pick your own cutoff (10–30 seconds is reasonable) and stop
-     the moment you cross it — record "stopped at $n=\ldots$, this size
-     took $\ldots$ seconds" as your last data point. That's a real
-     result, not a failure.
-   - Only then move to the next function, starting over at $n = 16$.
+   - **Add 1 or 2 to $n$** — your choice, but stay consistent for that
+     function — and time it again. Keep adding the same amount each
+     step: $16, 18, 20, 22, \ldots$ or $16, 17, 18, 19, \ldots$. Do
+     **not** double $n$.
+   - Keep stepping and recording until **either**:
+     - a single call takes uncomfortably long by your own standard
+       (5–10 seconds is reasonable), **or**
+     - you've spent more than a time budget you set for yourself on
+       this one function overall (60–90 seconds of total wall-clock
+       time, across every step so far) — **whichever happens first.**
+   - Drop the function the moment either line is crossed: stop testing
+     it, record your last size and time, and move on. Only then move to
+     the next function, starting over at $n = 16$.
 
-   Doing it this way — one function to its own limit before starting
-   the next — means that whichever function is going to blow up stops
-   *you* quickly, instead of getting buried inside one shared loop
-   where you don't notice it's the problem until a run has already
-   been hanging for several minutes at a size you picked for a
-   different function.
+   **Why two stopping rules, not just one:** with small additive steps,
+   a slow function doesn't suddenly take 10 seconds on one call — each
+   step is only a little slower than the last. What adds up is the
+   *total* time spent taking hundreds or thousands of small steps. Watch
+   the clock on the whole experiment, not just on each individual call,
+   or a slow function can quietly run for a very long time without any
+   single call ever looking alarming.
 
-3. **Your data.** A table of size vs. average time for each function
-   (note how many trials you averaged, and where — if at all — you
-   stopped early).
+   You will likely **not** reach the same $n$ for every function — the
+   function that's growing faster will cross your time budget at a
+   smaller $n$ than one that's growing slower. That difference is itself
+   a data point, not a nuisance: mention it in item 4.
+
+3. **Your data.** Stepping by 1 or 2 from $n=16$, you'll collect far
+   more points than a doubling approach would — likely hundreds to low
+   thousands per function. Don't try to type them all into a table.
+   - A **plot** (average time vs. $n$, one line per function) is the
+     right tool here — the shape of the curve is what you're looking for.
+   - If you'd rather use a table, report a **sampled subset** (every
+     25th or 50th point, say) plus your first and last point.
+   - Either way, state your trial count, your chosen increment (1 or
+     2), both stopping thresholds, and the size you stopped at for each
+     function.
 
 4. **Your conclusion, with reasoning.** For each function, name the
    growth class you believe it falls into — $\Theta(n)$,
    $\Theta(n \log n)$, $\Theta(n^2)$, or "worse than any polynomial
    we've discussed" — and, if you're willing to commit, which specific
    algorithm (or something not covered in class at all) you think it
-   is. **Cite your own numbers.** "It felt slow" isn't an argument;
-   "time roughly quadrupled across four consecutive doublings" is. A
-   wrong guess at the specific algorithm with solid reasoning from the
-   data earns more credit than a right guess with no numbers behind it.
+   is.
+
+   Since adjacent additive steps barely differ, don't compare adjacent
+   rows the way you would with doublings. Instead, pick two points far
+   apart in your own data (your first and last, say) and estimate a
+   growth exponent: if time scales as $n^k$, then $k \approx
+   \log(t_2/t_1) / \log(n_2/n_1)$. A $k$ near 1 suggests linear, near 2
+   suggests quadratic. You can also just describe the plotted shape —
+   straight line, gentle curve, sharply bending curve — as long as you
+   point to what you actually saw. **Cite your own numbers or your own
+   plot.** "It felt slow" isn't an argument; "I estimated $k \approx
+   1.9$ from my first and last points" or "the curve bends upward
+   noticeably, unlike the other two functions" is. A wrong guess at the
+   specific algorithm with solid reasoning from the data earns more
+   credit than a right guess with no numbers behind it.
+
+## Reading (preview for next week)
+
+Estimating $k$ above is really estimating a logarithm, and next week's
+material is built on logarithms directly — get a head start now:
+
+- [Villarreal-Calderon, "Chopping Logs: A Look at the History and Uses of Logarithms"](../oer/A%20Look%20at%20the%20History%20and%20Uses%20of%20Logarithms.pdf) (*The Mathematics Enthusiast*, 2008) — Napier's 1614 invention and his own stated motivation, Briggs's common-log tables, the slide rule, and the natural logarithm's calculus roots, in one piece.
+- [Wikipedia, "History of logarithms"](https://en.wikipedia.org/wiki/History_of_logarithms) — a complementary, more encyclopedic account of the same history.
