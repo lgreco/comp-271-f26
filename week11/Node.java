@@ -1,4 +1,3 @@
-
 /**
  * One string-valued node in a binary search tree, with links to its child
  * subtrees.
@@ -18,18 +17,23 @@ public class Node implements Comparable<Node> {
      * @param value string stored in this node
      */
     public Node(String value) {
+        // Store the string we were given. 'this.value' is the field; 'value' is the
+        // parameter. 'this' is Java's version of Python's 'self', and here it is required.
         this.value = value;
+        // A brand-new node has no children yet; null is Java's None.
         this.left = null;
         this.right = null;
     }
 
     /**
-     * Returns the stored string, which is also the node's readable representation.
+     * Returns the stored string in brackets, which is the node's readable
+     * representation.
      *
      * @return this node's value
      */
     @Override
     public String toString() {
+        // '+' joins strings, like Python's. The brackets make a node easy to spot in output.
         return "[ " + this.value + " ]";
     }
 
@@ -38,16 +42,18 @@ public class Node implements Comparable<Node> {
      *
      * @param other node whose value is compared with this node's value
      * @return a negative number, zero, or a positive number when this value is less
-     *         than,
-     *         equal to, or greater than the other value
+     *         than, equal to, or greater than the other value
      */
     @Override
     public int compareTo(Node other) {
+        // Delegate to String.compareTo: compare the contents, not the node objects.
+        // Negative: this value sorts first. Zero: equal. Positive: this value sorts later.
         return this.value.compareTo(other.value);
     }
 
     /** @return the string stored in this node */
     public String getValue() {
+        // Accessor: the field is private, so other classes must ask for it.
         return value;
     }
 
