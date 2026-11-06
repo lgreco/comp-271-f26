@@ -30,10 +30,9 @@ public class Node implements Comparable<Node> {
      */
     @Override
     public String toString() {
-        return this.value;
+        return "[ " + this.value + " ]";
     }
 
-    // Natural ordering lets the tree choose a side by comparing the stored strings.
     /**
      * Compares this node's value with another node's value using string ordering.
      *

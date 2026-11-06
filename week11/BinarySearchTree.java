@@ -21,16 +21,21 @@ public class BinarySearchTree {
         this.size = 0;
     }
 
+    /** Accessor for the size of the tree. */
+    public int getSize() {
+        return this.size;
+    } // method getSize
+
     /**
      * Starts inserting a value by creating its node and recursing from the root.
      *
      * @param value string to insert into the tree
      */
     public void insert(String value) {
-        // new_node = Node(value)
+        // new_node: Node = Node(value)
         Node newNode = new Node(value);
-        // The returned subtree root becomes the tree root (especially when inserting
-        // first).
+        // The returned subtree root becomes the tree root 
+        // (especially when inserting first).
         this.root = this.insertRec(this.root, newNode);
     }
 
@@ -56,6 +61,12 @@ public class BinarySearchTree {
             // Compare values and recurse into the matching side, then 
             // store its returned root in that child link. Node.compareTo 
             // defines the value ordering used by this tree.
+            if (newNode.compareTo(currentNode) < 0) {
+                // Go to the left
+                currentNode = insertRec(currentNode.getLeft(), newNode);
+            } else if (newNode.compareTo(currentNode) > 0) {
+                currentNode = insertRec(currentNode.getRight(), newNode);
+            }
         }
         return currentNode;
     }
