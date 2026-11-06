@@ -1,11 +1,13 @@
 
 /**
- * One string-valued node in a binary search tree, with links to its child subtrees.
+ * One string-valued node in a binary search tree, with links to its child
+ * subtrees.
  * Nodes compare according to the natural ordering of their string values.
  */
 public class Node implements Comparable<Node> {
 
-    // Each node stores one value and links to the roots of its left and right subtrees.
+    // Each node stores one value and links to the roots of its left and right
+    // subtrees.
     private String value;
     private Node left;
     private Node right;
@@ -26,6 +28,7 @@ public class Node implements Comparable<Node> {
      *
      * @return this node's value
      */
+    @Override
     public String toString() {
         return this.value;
     }
@@ -35,9 +38,11 @@ public class Node implements Comparable<Node> {
      * Compares this node's value with another node's value using string ordering.
      *
      * @param other node whose value is compared with this node's value
-     * @return a negative number, zero, or a positive number when this value is less than,
+     * @return a negative number, zero, or a positive number when this value is less
+     *         than,
      *         equal to, or greater than the other value
      */
+    @Override
     public int compareTo(Node other) {
         return this.value.compareTo(other.value);
     }
@@ -57,7 +62,9 @@ public class Node implements Comparable<Node> {
         return left;
     }
 
-    /** @param left new root of the left subtree, or {@code null} to clear the link */
+    /**
+     * @param left new root of the left subtree, or {@code null} to clear the link
+     */
     public void setLeft(Node left) {
         this.left = left;
     }
@@ -67,10 +74,10 @@ public class Node implements Comparable<Node> {
         return right;
     }
 
-    /** @param right new root of the right subtree, or {@code null} to clear the link */
+    /**
+     * @param right new root of the right subtree, or {@code null} to clear the link
+     */
     public void setRight(Node right) {
         this.right = right;
     }
-
-
 }
