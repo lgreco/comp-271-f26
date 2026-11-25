@@ -1,7 +1,7 @@
 
 # Huffman app in Python
 
-[Class `Huffman`](./huffman.py) below implements a Huffman encoder. I have added some code to allow verbose or silent execution, showing the steps during runtime.  The code follows the schematic below:
+[Class `Huffman`](./huffman.py) in this repo implements a Huffman encoder. I have added some code to allow verbose or silent execution, showing the steps during runtime.  The code follows the schematic below:
 
 
 <center>
