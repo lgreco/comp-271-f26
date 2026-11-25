@@ -1,5 +1,5 @@
 /**
- * Given tests for Week 13. Run with:  javac *.java  then  java FrequencyCounterTest
+ * Given tests for Week 14. Run with:  javac *.java  then  java FrequencyCounterTest
  * Do not change this file. Each line of output says ok or FAIL.
  * Most tests fail on the untouched scaffold; that is expected.
  * These tests check countFrequency only. Check printFrequencies by running
